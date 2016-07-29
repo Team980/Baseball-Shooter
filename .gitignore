@@ -100,4 +100,9 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+# ======
+#  FRC
+# ======
+
+Debug/
 
