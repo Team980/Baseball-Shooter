@@ -8,4 +8,8 @@
 //USB Channels for controllers (drive station)
 #define driveJsCh 0
 
+//Control buttons on joystick
+#define jsTriggerButton 1
+#define jsFailsafeButton 9 //side of joystick
+
 #endif /* _PARAMETERS_H_ */

@@ -8,6 +8,9 @@ private:
 	RobotDrive *robotDrive;
 	Joystick *driveStick;
 
+	bool isPrimed; //ready to fire
+	bool firing; //is the robot firing?
+
 	void RobotInit()
 	{
 
@@ -31,6 +34,18 @@ private:
 	void TeleopPeriodic()
 	{
 		robotDrive->ArcadeDrive(driveStick, Joystick::kYAxis, driveStick, Joystick::kZAxis, true);
+
+		if(driveStick->GetRawButton(jsTriggerButton)
+				&& driveStick->GetRawButton(jsFailsafeButton)
+				&& isPrimed) { //Only fires once per initialization
+
+			isPrimed = false;
+			firing = true;
+		}
+
+		if (firing) {
+			//TODO launch and shoot periodic
+		}
 	}
 
 	void TestPeriodic()
@@ -43,6 +58,9 @@ public:
 	{
 		robotDrive = new RobotDrive(leftSideMotorsCh,rightSideMotorsCh);
 		driveStick = new Joystick(driveJsCh);
+
+		isPrimed = true;
+		firing = false;
 	}
 
 	~Robot()
